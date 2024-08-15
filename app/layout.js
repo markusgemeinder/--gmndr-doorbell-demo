@@ -1,5 +1,14 @@
-import { Inter } from 'next/font/google';
-import './globals.css';
+// /app/layout.js
+
+import '@/app/globals.css'; // Stile einbinden
+
+// Importiere Google Fonts
+import { Indie_Flower } from 'next/font/google';
+
+const indieFlower = Indie_Flower({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const metadata = {
   title: '#GMNDR Doorbell Demo',
@@ -9,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body className={indieFlower.className}>{children}</body>
     </html>
   );
 }
