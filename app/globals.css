@@ -1,33 +1,38 @@
+/* /app/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Basis-Farben und Stile */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-text: #111827;
+  --color-background: #ffffff;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+main {
+  padding: 2rem;
+}
+
+.blinking-text {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
