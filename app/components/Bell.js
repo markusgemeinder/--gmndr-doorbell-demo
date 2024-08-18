@@ -1,109 +1,43 @@
 // /app/components/Bell.js
-import styled, { keyframes } from 'styled-components';
-import { useState } from 'react';
+
+import styled from 'styled-components';
 
 const BellWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-color: black;
 `;
 
-const BellContainer = styled.div`
+const BellButton = styled.button`
   display: flex;
-  flex-direction: column;
   align-items: center;
-`;
-
-const BellHousing = styled.div`
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, #d4af37 30%, #b8860b 100%);
+  justify-content: center;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  position: relative;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-`;
-
-const BellKnob = styled.div`
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, #f4f4f4 40%, #b0b0b0 100%);
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease-in-out;
+  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+  border: 2px solid #8f9092;
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1, inset 0 0 3px 0 #cecfd1;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:active {
-    transform: translate(-50%, -50%) translateY(8px);
-  }
-`;
-
-const NameTag = styled.div`
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #fff;
-  color: #000080; /* Dunkelblau für die Handschrift */
-  font-family: 'Indie Flower', cursive; /* Handschriftliche Schriftart */
-  border: 2px solid #b0b0b0;
-  border-radius: 5px;
-  max-width: 250px;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-
-  /* Schrauben-Dekoration */
-  &::before,
-  &::after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background-color: #b0b0b0;
-    position: absolute;
-    top: -10px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  &::before {
-    left: 10px;
-  }
-
-  &::after {
-    right: 10px;
+    transform: scale(0.95);
+    box-shadow: inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
   }
 `;
 
 const Bell = ({ onRing }) => {
-  const [isRinging, setIsRinging] = useState(false);
-
-  const ringBell = () => {
-    if (isRinging) return;
-    setIsRinging(true);
-
-    // Play sound
-    const audio = new Audio('/doorbell.mp3'); // Gong-Sound hinzufügen
-    audio.play();
-
-    // Simuliere das Klingeln für 1 Sekunde
-    setTimeout(() => {
-      setIsRinging(false);
-      onRing();
-    }, 1000);
-  };
-
   return (
     <BellWrapper>
-      <BellContainer>
-        <BellHousing>
-          <BellKnob onClick={ringBell} />
-        </BellHousing>
-        <NameTag>Mr. & Mrs. Beepshow</NameTag>
-      </BellContainer>
+      <BellButton onClick={onRing}>Mr. & Mrs. Beepshow</BellButton>
     </BellWrapper>
   );
 };

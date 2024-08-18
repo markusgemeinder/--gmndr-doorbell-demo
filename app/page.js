@@ -11,13 +11,23 @@ export default function Home() {
   const [randomNumber, setRandomNumber] = useState(0);
 
   const handleRing = () => {
+    const audio = new Audio('/doorbell.mp3');
+    audio.play();
+
     setRandomNumber(Math.floor(Math.random() * 10) + 1);
-    setShowNumber(true);
+
+    setTimeout(() => {
+      setShowNumber(true);
+    }, 1000); // Nach einer Sekunde zur nächsten Seite wechseln
   };
 
   const handleBack = () => {
     setShowNumber(false);
   };
 
-  return <>{showNumber ? <NumberScreen number={randomNumber} onBack={handleBack} /> : <Bell onRing={handleRing} />}</>;
+  return (
+    <main>
+      {showNumber ? <NumberScreen number={randomNumber} onBack={handleBack} /> : <Bell onRing={handleRing} />}
+    </main>
+  );
 }

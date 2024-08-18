@@ -10,8 +10,6 @@ const ScreenWrapper = styled.div`
   height: 100vh;
   background-color: white;
   color: black;
-  transition: opacity 0.5s ease-in-out;
-  opacity: 1;
 `;
 
 const NumberDisplay = styled.div`
